@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbnb</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8f38e270eb.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/header.css">
+    <script src="../Scripts/header.js"></script>
+
+
+    <!-- This Page Start Here -->
+    <link rel="stylesheet" href="../CSS/chat.css">
+    <link rel="stylesheet" href="../CSS/profilePage.css">
+    <link href="../CSS/spinner.css" rel="stylesheet" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../Scripts/config.js"></script>
+    <script src="../Scripts/userProfilePage.js"></script>
+
+
+</head>
+<body>
+
+    <div class="container">
+        <!-- NavBar -->
+        <div id="MainHeader"></div>
+
+        <div class="profileContainer">
+            <div id="profileCard" class="card">
+                <h1 id="username"></h1>
+                <hr>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-futureReservations-tab" data-bs-toggle="tab" data-bs-target="#nav-futureReservations" type="button" role="tab" aria-controls="nav-futureReservations" aria-selected="true">Future Reservations</button>
+                        <button onclick="getMyPastReservations()" class="nav-link" id="nav-pastReservations-tab" data-bs-toggle="tab" data-bs-target="#nav-pastReservations" type="button" role="tab" aria-controls="nav-pastReservations" aria-selected="false">Past Reservations</button>
+                        <button onclick="getMyLikedApartments()" class="nav-link" id="nav-likedApartments-tab" data-bs-toggle="tab" data-bs-target="#nav-likedApartments" type="button" role="tab" aria-controls="nav-likedApartments" aria-selected="false">Liked Apartments</button>
+                        <button class="nav-link" id="nav-chat-tab" data-bs-toggle="tab" data-bs-target="#nav-chat" type="button" role="tab" aria-controls="nav-chat" aria-selected="false">Chat</button>
+                    </div>
+                </nav>
+                <div id="orderContainer" class="container overflow-auto">
+
+                    <div class="tab-content" id="nav-tabContent">
+                        <!--Future Reservations-->
+                        <div class="tab-pane fade show active" id="nav-futureReservations" role="tabpanel" aria-labelledby="nav-futureReservations-tab">
+                            <div id="futureReservationsContainer" class="row row-cols-1 row-cols-md-3">
+
+                            </div>
+                        </div>
+                        <!--Past Reservations-->
+                        <div class="tab-pane fade" id="nav-pastReservations" role="tabpanel" aria-labelledby="nav-pastReservations-tab">
+                            <div id="pastReservationsContainer" class="row row-cols-1 row-cols-md-3">
+
+                            </div>
+                            <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModal" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">New comment</h5>
+                                            <button type="button" data-bs-dismiss="modal" class="close" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+  
+                                                <div class="form-group">
+                                                    <label for="message-text" class="col-form-label">Message:</label>
+                                                    <textarea rows="6" class="form-control" id="reviewText"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" id="addReview" class="btn btn-primary">Send comment</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Liked Apartments-->
+                        <div class="tab-pane fade" id="nav-likedApartments" role="tabpanel" aria-labelledby="nav-likedApartments-tab">
+                            <div id="likedApartmentsContainer" class="row row-cols-1 row-cols-md-3">
+
+                            </div>
+                        </div>
+
+                        <!--Chat-->
+                        <div class="tab-pane fade" id="nav-chat" role="tabpanel" aria-labelledby="nav-chat-tab">
+                            <div class="chat display-flex flex-column">
+
+                                <div class="chat-history">
+                                    <div class="chat-history overflow-auto">
+                                        <ul id="activeChat" class="m-b-0"></ul>
+                                    </div>
+                                   
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div id="chatInputDiv" class="chat-message clearfix mt-auto">
+                    <div class="input-group mb-0">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i onclick="sendMessage()" class="fa fa-send"></i></span>
+                        </div>
+                        <input id="newMessage" type="text" class="form-control" placeholder="Enter text here...">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="spinner" class="text-center">
+            <div class="spinner spinner-border">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+       
+      
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+    
+</body>
+</html>

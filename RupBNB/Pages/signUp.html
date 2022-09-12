@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbnb</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8f38e270eb.js" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/header.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="../Scripts/header.js"></script>
+    <script src="../Scripts/signUpScript.js"></script>
+
+    <!-- This Page Start Here -->
+    <link rel="stylesheet" href="../CSS/login-signup.css">
+
+</head>
+<body>
+    <div class="container">
+         <!-- NavBar -->
+        <div id="MainHeader">
+
+        </div>
+        <div id="formContainer">
+            <form id="signUpForm">
+                <div class="mb-3">
+                    <h1 id="headline">SignUp</h1>
+                </div>
+                <div class="mb-3">
+                    <label for="forEmail" class="form-label">Email address</label>
+                    <input type="email" id="email"
+                           class="form-control"
+                           aria-describedby="emailHelp"
+                           placeholder="Email" 
+                           oninput="this.setCustomValidity('')"
+                           required>
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="forUserName" class="form-label"> UserName</label>
+                    <input type="text" id="userName"
+                           pattern="[a-zA-Z0-9]{3,30}"
+                           oninvalid="this.setCustomValidity('User Name must be Minimun 3 characters - letters and numbers only')"
+                           oninput="this.setCustomValidity('')"
+                           class="form-control"
+                           placeholder="First Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="forPassword" class="form-label">Password</label>
+                    <input type="password" id="password"
+                           pattern="^.{3,30}$"
+                           oninvalid="this.setCustomValidity('Password must be 3-30 characters')"
+                           oninput="this.setCustomValidity('')"
+                           class="form-control"
+                           placeholder="Password" required>
+                </div>
+                <div class="mb-3">
+                <label for="forPassword" class="form-label">Confrim password</label>
+                    <input type="password" id="confirmPassword"
+                           pattern="^.{3,30}$"
+                           oninput="this.setCustomValidity('')"
+                           class="form-control"
+                           placeholder="Password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="forFirstName" class="form-label">First Name</label>
+                    <input type="text" id="firstName"
+                           pattern="[A-Za-z]{3,30}"
+                           oninvalid="this.setCustomValidity('First Name must be Minimun 3 characters - only letters')"
+                           oninput="this.setCustomValidity('')"
+                           class="form-control"
+                           placeholder="First Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="forLastName" class="form-label">Last Name</label>
+                    <input type="text" id="lastName"
+                           pattern="[A-Za-z]{3,30}"
+                           oninvalid="this.setCustomValidity('Last Name must be Minimun 3 characters - only letters')"
+                           oninput="this.setCustomValidity('')"
+                           class="form-control"
+                           placeholder="Last Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="forBirthDate" class="form-label">Birth Date</label>
+                    <input type="date" id="birthDate"
+                        oninput="this.setCustomValidity('')"
+                        class="form-control" required>
+                </div>
+                <div class="d-grid gap-2">
+                    <button value="Submit" onclick="check()" id="signUpBtn" class="btn btn-primary">SignUp</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

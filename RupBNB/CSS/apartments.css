@@ -1,0 +1,131 @@
+#cardContainer {
+    margin-top: 1%;
+}
+
+.dot-hr {
+    border-bottom: 1px dotted #CECBC7;
+    margin-bottom: 10px;
+}
+
+#searchFilterContainer {
+    background: transparent;
+    margin: 2rem auto 0;
+    max-width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 10px;
+    padding:10px;
+}
+
+.card {
+    background-color: transparent;
+    border: none;
+}
+
+.card-body {
+    padding: 0;
+    margin-top: 5px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-apartment {
+    border-radius: 10px;
+    height: 13rem;
+}
+
+.detailBTN {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+
+#cardContainer {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 95%;
+}
+
+#mapContainer{
+    max-height: 400px;
+}
+#map {
+    height: 100%;
+    max-height: 400px;
+    width: 90%;
+    margin-top: 20px;
+}
+
+#cardMapContainer {
+    max-height: 400px;
+}
+
+#cards {
+    max-height: 600px;
+}
+
+
+.apartName {
+    flex-grow: 1;
+}
+
+
+#serachFilter{
+    height: 40px;
+}
+
+
+#searchFilterContainer {
+    width: 40%;
+}
+
+#searchTitle {
+    margin: 5px 0;
+    z-index:100;
+}
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+    #cards {
+        max-height: none;
+    }
+    #serachFilter{
+        height: 30px;
+    }
+    #searchFilterContainer {
+        width: 100%;
+    }
+    .buttonText {
+        display: none;
+    }
+    .icon_class {
+        font-size: 1.5rem;
+    }
+}
+
+
+
+
+.spinner {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+}
+
+.form-control[readonly] {
+    background: #fff;
+}
+
+
+
+
